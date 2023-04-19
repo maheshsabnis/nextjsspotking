@@ -1,0 +1,37 @@
+# Next.js
+- Next 13.3
+    - npx create-next-app@latest
+        - pages folder
+            - File-Based Routing
+                - Server-Side Components*****
+            - api folder
+                - api creation
+                - API ROute using 'handler'
+                    - The Express Object Model
+                    - Request and Response
+- Next 13.x Experimental Project Structure
+    - npx create-next-app@latest --experimental-app   
+    - Experimental Features (Currently in Beta)
+    - The 'src' folder
+        - The 'app' folder that is for server-side contents
+            - The 'api' folder
+                - API Routes, 
+                    - Each API is present in 'seperate folder' and the code is written in 'route.ts'
+                        - Each route will be a seperate method
+                            - GET, POST, PUT, and DELETE
+                    - The Fetch API Request and Response object
+                        - They havse async methods  
+            - COmpoenent
+                - layout.tsx is the component that renders all children
+                - Next.js 13 Experimental
+                    - Folder-File Based ROuting
+                        - Each Folder MUST have its own page.tsx
+                        - FOr a Common Layout for components only for that folder, tere must exist the 'layout.tsx'                 
+
+# Programming with Next.js
+- Practices and features of Next.js
+- Routing
+    - next/link
+        - The 'Link'
+            - href props to routing
+- DataFetching
