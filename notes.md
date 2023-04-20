@@ -35,3 +35,55 @@
         - The 'Link'
             - href props to routing
 - DataFetching
+
+
+# Edge Runtime
+    - Where as the API ROutes are based on or uses Node.js Runtime
+    - Edge Runtime based on Standard WEB API Principals
+        - STandard HTTP Request Processing
+            - any format of Data Communication
+            - streamed based Communciation over HTTP
+        - Supports
+            - FormData
+            - File
+            - Blob
+            - ArrayBuffer
+        - Network API
+            - fetch
+            - Request
+            - Response
+            - Headers
+        - ENcoders
+            - base64 bit encoders
+                - atob btoa
+        - Stream API
+            - Read/Write Stream
+                - ReadableStream and WritableStream 
+        - next/server
+            - NextRequest
+                - body
+                    - stream
+                - json
+                    - json data in body      
+            - NextResponse     
+            - Cache-Control
+            - QueryParameters             
+    - Not all node-modules are supported by edge runtime
+        - stream
+            - mssmql
+    - Serverless          
+    - USe of 'Middlewares'
+        - USed for Modifying the request and accordingly manage the response
+        - Mandatory logic that we want to exxecute for each incomming HTTP Request to APIs
+```` javascript
+       export const config = {
+         runtime: 'edge'
+       } 
+
+````
+
+
+# app directory
+    - Traditional data fetching is not Supported****
+    - React Server-Side Components
+        - They can execute asynchronously

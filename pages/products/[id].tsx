@@ -1,0 +1,81 @@
+import React from 'react'
+import './../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { ProductInfo } from '@/models/productinfo';
+ 
+ 
+
+ 
+
+const Product = ({product}:any) => {
+  return (
+    <div className='container'>
+        <h4>Showing Product Detail</h4>
+        {
+            JSON.stringify(product)
+        }
+    </div>
+  )
+}
+
+// the funciton thateill called during the build time
+// make an API Callto get all the products
+// and then return the paths for the single product
+// based on ProductRowId
+// the paths here are the SSG pages those will be
+// loaded with data
+// if the match path is not found the fallback will be shown
+export async function getStaticPaths(){
+    try {
+        // all the data
+        const result = await fetch(`https://productapiserv.azurewebsites.net/api/ProductsAPI`);
+        
+        const products = await result.json();
+
+        console.log(JSON.stringify(products));
+
+        // get the path parameter that will be used by dynamic route
+        // so the SSG page will be accessed   
+
+        const paths = products.map((product:any)=>({
+            params: {id: product.ProductRowId.toString()}
+        }));
+        
+
+// return , the fallback:false the 404 
+return {paths, fallback:false} 
+    }catch(e){
+  console.log(e);
+    }
+    
+    
+}
+
+// since for dynamic routing we need
+// parameters based on which the data will be
+// available at build time that help the getStaticPaths()
+// to generate page aka Static-Site-Generation (SSG)
+// access record from the API based on parameter value 
+export async function getStaticProps({params}:any){
+    try {
+        console.log(params);
+        // read the Parameter value
+        const id = parseInt(params.id);
+        // make the call
+        const result = await fetch(`https://productapiserv.azurewebsites.net/api/ProductsAPI/${id}`);
+        // read the received object
+        const product = await result.json();
+        // pass the object to page using props
+ return {
+     props:{
+         product
+     }
+ };
+    }catch(e){
+        console.log(e);
+    }
+   
+}
+
+
+
+export default Product;
