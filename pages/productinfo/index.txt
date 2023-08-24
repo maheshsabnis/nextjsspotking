@@ -26,14 +26,14 @@ const ProductList = (props:dataProps) => {
   return (
     <div className='container'>
           {
-            props.products[0].map((prd:ProductInfo,idx:number)=>(
-                <ul key={idx}>
-                   <li>
-                     {/* <Link href={`/productinfo/selproduct/${prd.ProductRowId}`}>{prd.ProductRowId}</Link>  */}
-                      <button onClick={()=>btnClick(prd.ProductRowId)} value={prd.ProductRowId}>{prd.ProductRowId}</button>
-                   </li>     
-                </ul>
-            ))
+            // props.products[0].map((prd:ProductInfo,idx:number)=>(
+            //     <ul key={idx}>
+            //        <li>
+            //          {/* <Link href={`/productinfo/selproduct/${prd.ProductRowId}`}>{prd.ProductRowId}</Link>  */}
+            //           <button onClick={()=>btnClick(prd.ProductRowId)} value={prd.ProductRowId}>{prd.ProductRowId}</button>
+            //        </li>     
+            //     </ul>
+            // ))
           }  
     </div>
   )

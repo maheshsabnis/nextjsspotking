@@ -1,8 +1,6 @@
 import React from 'react'
 import './../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { ProductInfo } from '@/models/productinfo';
-import ExecuteQuery from '@/dataaccess/db';
-import ExecuteQueryNew from '@/dataaccess/da1';
  
  
 
@@ -27,13 +25,11 @@ const Product = ({product}:any) => {
 // loaded with data
 // if the match path is not found the fallback will be shown
 export async function getStaticPaths(){
-    let products:Array<ProductInfo>  =new Array<ProductInfo>();
     try {
-
         // all the data
-        const result = await ExecuteQueryNew("Select * from ProductInfo");
-         
-        products = result as Array<ProductInfo>;
+        const result = await fetch(`https://productapiserv.azurewebsites.net/api/ProductsAPI`);
+        
+        const products = await result.json();
 
         console.log(JSON.stringify(products));
 
@@ -46,13 +42,7 @@ export async function getStaticPaths(){
         
 
 // return , the fallback:false the 404 
-return {paths, fallback:true} 
-
-  // We'll pre-render only these paths at build time.
-  // { fallback: 'blocking' } will server-render pages
-  // on-demand if the path doesn't exist.
-//   return { paths, fallback: 'blocking' }
-
+return {paths, fallback:false} 
     }catch(e){
   console.log(e);
     }
@@ -66,17 +56,14 @@ return {paths, fallback:true}
 // to generate page aka Static-Site-Generation (SSG)
 // access record from the API based on parameter value 
 export async function getStaticProps({params}:any){
-    let products:Array<ProductInfo>  =new Array<ProductInfo>();
-    let product  =new ProductInfo(0,'','','','','',0);
     try {
         console.log(params);
         // read the Parameter value
-        const result = await ExecuteQueryNew(`Select * from ProductInfo where ProductRowId=${params.id}`);
-         
-        products = result as Array<ProductInfo>;
-
-        console.log(JSON.stringify(products[0]));
-        product =  products[0];
+        const id = parseInt(params.id);
+        // make the call
+        const result = await fetch(`https://productapiserv.azurewebsites.net/api/ProductsAPI/${id}`);
+        // read the received object
+        const product = await result.json();
         // pass the object to page using props
  return {
      props:{

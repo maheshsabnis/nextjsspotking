@@ -11,7 +11,7 @@ export const config = {
 
 // 3. Lest create handler to process request
 // export default async function handler(request:NextRequest){
-//     const method = request.method; 
+//     const method = request.method;
 //     console.log(`Method = ${method}`);
 //     let respData:string = '';
 //     switch(method) {
@@ -20,8 +20,8 @@ export const config = {
 //             break;
 //         case 'POST':
 //              const headers = request.headers;
-//              const body = await request.json();  
-//              respData = `Headers ${JSON.stringify(headers)} and Body ${JSON.stringify(body)}`     
+//              const body = await request.json();
+//              respData = `Headers ${JSON.stringify(headers)} and Body ${JSON.stringify(body)}`
 //     }
 
 
@@ -41,10 +41,10 @@ export const config = {
 // }
 
 
-export default async function handler(request:NextRequest){
-    const dataSet = await ExecuteQuery("Select * from ProductInfo");
-    console.log(`DataSet = ${JSON.stringify(dataSet)}`);
-    return NextResponse.json({
-        received: dataSet
-    });
-}
+// export default async function handler(request:NextRequest){
+//     const dataSet = await ExecuteQuery("Select * from ProductInfo");
+//     console.log(`DataSet = ${JSON.stringify(dataSet)}`);
+//     return NextResponse.json({
+//         received: dataSet
+//     });
+// }

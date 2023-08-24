@@ -1,4 +1,5 @@
 export class ProductInfo {
+    [x: string]: any;
     constructor(public ProductRowId:number,
         public ProductId:string,
         public ProductName:string,
